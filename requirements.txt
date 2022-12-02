@@ -1,0 +1,6 @@
+torch
+torchsummary
+numpy
+pyplot
+tqdm
+requests

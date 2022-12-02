@@ -1,7 +1,10 @@
 import numpy as np
 import torch
+import requests
+import io
 
-class ImageDataset():
+
+class ImageDataset:
     """
     Creates a DataSet from numpy arrays while keeping the data
     in the more efficient numpy arrays for as long as possible and only
@@ -23,7 +26,6 @@ class ImageDataset():
         label = self.targets[idx]
         return image, label
 
-
     def load_numpy_arr_from_url(self, url):
         """
         Loads a numpy array from surfdrive.
@@ -42,7 +44,7 @@ class ImageDataset():
 
     def load_numpy_arr_from_npy(self, path):
         """
-        Loads a numpy array from surfdrive.
+        Loads a numpy array from local storage.
 
         Input:
         path: local path of file
@@ -52,3 +54,24 @@ class ImageDataset():
         """
 
         return np.load(path)
+
+
+if __name__ == "__main__":
+    ### Load labels
+    train_y = ImageDataset.load_numpy_arr_from_url(
+        "https://surfdrive.surf.nl/files/index.php/s/i6MvQ8nqoiQ9Tci/download"
+    )
+    np.save("data/Y_train.npy", train_y)
+    test_y = ImageDataset.load_numpy_arr_from_url(
+        "https://surfdrive.surf.nl/files/index.php/s/wLXiOjVAW4AWlXY/download"
+    )
+    np.save("data/Y_test.npy", test_y)
+    ### Load data
+    train_x = ImageDataset.load_numpy_arr_from_url(
+        "https://surfdrive.surf.nl/files/index.php/s/4rwSf9SYO1ydGtK/download"
+    )
+    np.save("data/X_train.npy", train_x)
+    test_x = ImageDataset.load_numpy_arr_from_url(
+        "https://surfdrive.surf.nl/files/index.php/s/dvY2LpvFo6dHef0/download"
+    )
+    np.save("data/X_test.npy", test_x)
