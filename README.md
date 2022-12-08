@@ -14,7 +14,7 @@ To be finished...
 5. Upload the extracted files from Data-Challenge-1-template-main.zip to your repository. Note that for the initial commit you should commit directly to the main branch
 6. Invite your **group members, tutor and teachers** by going to Settings > Collaborators > Add people.
 7. Open PyCharm and make sure that your GitHub account is linked.*
-8. Click "Get from VCs > GitHub" and select your repository and click on clone.
+8. In the welcome screen of PyCharm, click "Get from VCs > GitHub" and select your repository and click on clone.
 9. After the repository is cloned, you can now create a virtual environment using the requirements.txt.
 
 *For information on how to install PyCharm and link Github to your PyCharm, we refer to the additional resources page on Canvas.
