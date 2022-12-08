@@ -4,11 +4,6 @@ This repository contains the template code for the TU/e course JBG040 Data Chall
 ## Code structure
 The sample code is structured into multiple files, based on their functionality. 
 There are six `.py` files in total, each containing a different part of the code. 
-To be finished...
-
-## Environment setup instructions
-We recommend to set up a virtual Python environment to install all necessary packages. 
-These packages are included in the `requirements.txt` file.
 
 - To download the data: run the `ImageDataset.py` file. The script will create a directory `/data/` and download the training and test data with corresponding labels to this directory. 
     - You will only have to run this script once usually, at the beginning of your project.
@@ -21,6 +16,11 @@ These packages are included in the `requirements.txt` file.
     - Check and enable GPU acceleration for training.
     - Train the neural network and perform evaluation on test set at the end of each epoch.
     - Finally, save your trained model's weights so that you can reload them.
+
+
+## Environment setup instructions
+We recommend to set up a virtual Python environment to install all necessary packages. 
+These packages are included in the `requirements.txt` file.
 
 
 ## GitHub setup instructions
