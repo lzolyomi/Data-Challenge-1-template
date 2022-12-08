@@ -1,6 +1,6 @@
-torch
-torchsummary
+torch>=1.12
+torchsummary>=1.5.1
 numpy
-pyplot
+matplotlib
 tqdm
 requests

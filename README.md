@@ -37,14 +37,3 @@ These packages are included in the `requirements.txt` file.
     - Finally, save your trained model's weights so that you can reload them.
 
 
-## GitHub setup instructions
-1. Click the green "<> Code" button at the upper right corner of the repositiory.
-2. Make sure that the tab "Local" is selected and click "Download ZIP".
-3. Go to the GitHub homepage and create a new repository.
-4. Make sure that the repository is set to **private** and give it the name JBG040-GroupXX, where XX is your group number.
-5. Upload the extracted files from Data-Challenge-1-template-main.zip to your repository. Note that for the initial commit you should commit directly to the main branch
-6. Invite your groupmembers by going to Settings > Collaborators > Add people.
-7. Open PyCharm and make sure that your GitHub account is linked*
-8. Click "Get from VCs > GitHub" and select your repository and click on clone.
-9. After the repository is cloned, you can now create a virtual environment using the requirements.txt.
-

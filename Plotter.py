@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 # - Sample images from training/test data
 # - Training loss at each epoch
 # - Test loss after each epoch
-# - Possibly ROC curve?
+
 # Plotting some images
 unique_labels = set(class_labels.keys())
 fig, ax = plt.subplots(ncols=len(unique_labels), figsize=[25, 5])
