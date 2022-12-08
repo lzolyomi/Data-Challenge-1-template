@@ -2,6 +2,8 @@ import numpy as np
 import torch
 import requests
 import io
+from os import path
+import os
 
 
 class ImageDataset:
@@ -26,22 +28,6 @@ class ImageDataset:
         label = self.targets[idx]
         return image, label
 
-    def load_numpy_arr_from_url(self, url):
-        """
-        Loads a numpy array from surfdrive.
-
-        Input:
-        url: Download link of dataset
-
-        Outputs:
-        dataset: numpy array with input features or labels
-        """
-
-        response = requests.get(url)
-        response.raise_for_status()
-
-        return np.load(io.BytesIO(response.content))
-
     def load_numpy_arr_from_npy(self, path):
         """
         Loads a numpy array from local storage.
@@ -56,22 +42,44 @@ class ImageDataset:
         return np.load(path)
 
 
+def load_numpy_arr_from_url(url):
+    """
+    Loads a numpy array from surfdrive.
+
+    Input:
+    url: Download link of dataset
+
+    Outputs:
+    dataset: numpy array with input features or labels
+    """
+
+    response = requests.get(url)
+    response.raise_for_status()
+
+    return np.load(io.BytesIO(response.content))
+
+
 if __name__ == "__main__":
+    cwd = os.getcwd()
+    if path.exists(path.join(cwd + "data/")):
+        print("Data directory exists, files may be overwritten!")
+    else:
+        os.mkdir(path.join(cwd, "data/"))
     ### Load labels
-    train_y = ImageDataset.load_numpy_arr_from_url(
-        "https://surfdrive.surf.nl/files/index.php/s/i6MvQ8nqoiQ9Tci/download"
+    train_y = load_numpy_arr_from_url(
+        url="https://surfdrive.surf.nl/files/index.php/s/i6MvQ8nqoiQ9Tci/download"
     )
     np.save("data/Y_train.npy", train_y)
-    test_y = ImageDataset.load_numpy_arr_from_url(
-        "https://surfdrive.surf.nl/files/index.php/s/wLXiOjVAW4AWlXY/download"
+    test_y = load_numpy_arr_from_url(
+        url="https://surfdrive.surf.nl/files/index.php/s/wLXiOjVAW4AWlXY/download"
     )
     np.save("data/Y_test.npy", test_y)
     ### Load data
-    train_x = ImageDataset.load_numpy_arr_from_url(
-        "https://surfdrive.surf.nl/files/index.php/s/4rwSf9SYO1ydGtK/download"
+    train_x = load_numpy_arr_from_url(
+        url="https://surfdrive.surf.nl/files/index.php/s/4rwSf9SYO1ydGtK/download"
     )
     np.save("data/X_train.npy", train_x)
-    test_x = ImageDataset.load_numpy_arr_from_url(
-        "https://surfdrive.surf.nl/files/index.php/s/dvY2LpvFo6dHef0/download"
+    test_x = load_numpy_arr_from_url(
+        url="https://surfdrive.surf.nl/files/index.php/s/dvY2LpvFo6dHef0/download"
     )
     np.save("data/X_test.npy", test_x)

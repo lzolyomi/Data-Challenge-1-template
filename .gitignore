@@ -1,4 +1,5 @@
 local/
+data/
 *.ipynb
 .DS_store
 __pycache__/
