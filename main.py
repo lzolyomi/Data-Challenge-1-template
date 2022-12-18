@@ -10,9 +10,10 @@ from torchsummary import summary
 
 import matplotlib.pyplot as plt
 import os
+import argparse
 
 
-def main():
+def main(args):
 
     train_dataset = ImageDataset("data/X_train.npy", "data/Y_train.npy")
     test_dataset = ImageDataset("data/X_test.npy", "data/Y_test.npy")
@@ -22,8 +23,8 @@ def main():
     optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.1)
     loss_function = nn.CrossEntropyLoss()
 
-    n_epochs = 3
-    batch_size = 25
+    n_epochs = args.nb_epochs
+    batch_size = args.batch_size
 
     # IMPORTANT! Set this to True to see actual errors regarding
     # the structure of your model (GPU acceleration hides them)!
@@ -52,9 +53,9 @@ def main():
 
     # Lets now train and test our model for multiple epochs:
     train_sampler = BatchSampler(
-        batch_size=batch_size, dataset=train_dataset, balanced=False
+        batch_size=batch_size, dataset=train_dataset, balanced=args.balanced_batches
     )
-    test_sampler = BatchSampler(batch_size=100, dataset=test_dataset, balanced=False)
+    test_sampler = BatchSampler(batch_size=100, dataset=test_dataset, balanced=args.balanced_batches)
 
     mean_losses_train = []
     mean_losses_test = []
@@ -91,4 +92,12 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('--nb_epochs', help='number of training iterations', default=10, type=int)
+    parser.add_argument('--batch_size', help='batch_size', default=25, type=int)
+    parser.add_argument('--balanced_batches', help='whether to balance batches for class labels', default=True, type=bool)
+
+    args = parser.parse_args()
+
+    main(args)
