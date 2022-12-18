@@ -12,7 +12,7 @@ There are six `.py` files in total, each containing a different part of the code
     - Load your train and test data (Make sure its downloaded beforehand!)
     - Initializes the neural network as defined in the `Net.py` file.
     - Initialize loss functions and optimizers. If you want to change the loss function/optimizer, do it here.
-    - define number of training epochs and batch size
+    - Define number of training epochs and batch size
     - Check and enable GPU acceleration for training.
     - Train the neural network and perform evaluation on test set at the end of each epoch.
     - Finally, save your trained model's weights so that you can reload them.
@@ -36,4 +36,14 @@ There are six `.py` files in total, each containing a different part of the code
 We recommend to set up a virtual Python environment to install all necessary packages. 
 These packages are included in the `requirements.txt` file.
 
+## Submission instructions
+1. Make sure that your code is running without issues and that everything is pushed to the main branch.
+2. Head over to your repository and click on "Releases".
+3. Click on the green button "Create a new release".*
+4. Click on "Choose a tag".
+5. Fill in the textbox with SprintX where X is the current sprint number and press "Create new tag: SprintX".
+6. Fill in the title of the release with Group XX Sprint X where XX is your groupnumber and X is the current sprint number.
+7. Click the green "Publish release" button.
+8. Verify that your release has been succesfully created by handing over to your repository and press the "Releases" button once again.
 
+*After the first release, you should click "Draft a new release" instead of "Create a new release"
