@@ -37,13 +37,16 @@ We recommend to set up a virtual Python environment to install all necessary pac
 These packages are included in the `requirements.txt` file.
 
 ## Submission instructions
+After each sprint, you are expected to submit your code. This will **not** be done in Canvas, instead you will be creating a release of your current repository. 
+Note that you are not allowed to update your old releases after the deadline.
+
 1. Make sure that your code is running without issues and that **everything is pushed to the main branch**.
-2. Head over to your repository and click on *Releases*.
+2. Head over to your repository and click on *Releases* (located at the right-hand side).
 3. Click on the green button *Create a new release*.*
 4. Click on *Choose a tag*.
 5. Fill in the textbox with SprintX where X is the current sprint number and press *Create new tag: SprintX*.
 6. Fill in the title of the release with Group XX Sprint X where XX is your groupnumber and X is the current sprint number.
 7. Click the green *Publish release* button.
-8. Verify that your release has been succesfully created by handing over to your repository and press the *Releases* button once again.
+8. Verify that your release has been succesfully created by heading over to your repository and press the *Releases* button once again. There you should be able to see your newly created release
 
 *After the first release, you should click *Draft a new release* instead of *Create a new release*
