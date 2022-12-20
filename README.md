@@ -19,11 +19,11 @@ There are six `.py` files in total, each containing a different part of the code
 
 
 ## GitHub setup instructions
-1. Click the green **<> Code** button at the upper right corner of the repositiory.
-2. Make sure that the tab **Local** is selected and click **Download ZIP**.
+1. Click the green *<> Code* button at the upper right corner of the repositiory.
+2. Make sure that the tab *Local* is selected and click *Download ZIP*.
 3. Go to the GitHub homepage and create a new repository.
-4. Make sure that the repository is set to **private** and give it the name JBG040-GroupXX, where XX is your group number.
-5. Upload the extracted files from Data-Challenge-1-template-main.zip to your repository. Note that for the initial commit you should commit directly to the main branch
+4. Make sure that the repository is set to **private** and give it the name **JBG040-GroupXX**, where XX is your group number.
+5. Press *uploading an exisiting file* and upload the extracted files from Data-Challenge-1-template-main.zip to your repository. Note that for the initial commit you should commit directly to the main branch
 6. Invite your **group members, tutor and teachers** by going to Settings > Collaborators > Add people.
 7. Open PyCharm and make sure that your GitHub account is linked.*
 8. In the welcome screen of PyCharm, click *Get from VCs > GitHub* and select your repository and click on clone.
@@ -44,9 +44,9 @@ Note that you are not allowed to update your old releases after the deadline.
 2. Head over to your repository and click on *Releases* (located at the right-hand side).
 3. Click on the green button *Create a new release*.*
 4. Click on *Choose a tag*.
-5. Fill in the textbox with SprintX where X is the current sprint number and press *Create new tag: SprintX*.
-6. Fill in the title of the release with Group XX Sprint X where XX is your groupnumber and X is the current sprint number.
+5. Fill in the textbox with SprintX where X is the current sprint number and press *Create new tag: **SprintX***.
+6. Fill in the title of the release with **Group XX Sprint X** where XX is your group number and X is the current sprint number.
 7. Click the green *Publish release* button.
-8. Verify that your release has been succesfully created by heading over to your repository and press the *Releases* button once again. There you should be able to see your newly created release
+8. **Verify** that your release has been succesfully created by heading over to your repository and press the *Releases* button once again. There you should be able to see your newly created release
 
 *After the first release, you should click *Draft a new release* instead of *Create a new release*
