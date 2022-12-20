@@ -38,7 +38,7 @@ These packages are included in the `requirements.txt` file.
 
 ## Submission instructions
 After each sprint, you are expected to submit your code. This will **not** be done in Canvas, instead you will be creating a release of your current repository. 
-Note that you are not allowed to update your old releases after the deadline.
+**Note that you are not allowed to update your old releases after the deadline.**
 
 1. Make sure that your code is running without issues and that **everything is pushed to the main branch**.
 2. Head over to your repository and click on *Releases* (located at the right-hand side).
