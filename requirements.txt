@@ -4,5 +4,4 @@ numpy
 matplotlib
 tqdm
 requests
-keyboard
 plotext

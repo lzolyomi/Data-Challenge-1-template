@@ -42,10 +42,7 @@ class BatchSampler:
         return (len(self.indexes) // self.batch_size) + 1
 
     def shuffle(self):
-        # We do not need to shuffle if we use the balanced sampling method.
-        # Shuffling is already done when making the balanced samples.
-        if not self.balanced:
-            random.shuffle(self.indexes)
+        random.shuffle(self.indexes)
 
     def __iter__(self):
         remaining = False

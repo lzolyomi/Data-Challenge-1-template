@@ -2,5 +2,6 @@ local/
 data/
 model_weights/
 *.ipynb
+artifacts/
 .DS_store
 __pycache__/

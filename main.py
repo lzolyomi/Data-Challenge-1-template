@@ -9,16 +9,18 @@ import torch.optim as optim
 from torchsummary import summary
 
 import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure
 import os
 import argparse
-import keyboard
 import plotext
+from datetime import datetime
 
 # prepare to exit the program
 def quit():
     global activeloop
-    activeloop=False
+    activeloop = False
     print("\nstopping loop!")
+
 
 def main(args):
 
@@ -62,16 +64,17 @@ def main(args):
     train_sampler = BatchSampler(
         batch_size=batch_size, dataset=train_dataset, balanced=args.balanced_batches
     )
-    test_sampler = BatchSampler(batch_size=100, dataset=test_dataset, balanced=args.balanced_batches)
+    test_sampler = BatchSampler(
+        batch_size=100, dataset=test_dataset, balanced=args.balanced_batches
+    )
 
     mean_losses_train = []
     mean_losses_test = []
     accuracies = []
-    
-    print("Starting Training, press q to terminate early!\n")
+
     for e in range(n_epochs):
         if activeloop:
-            
+
             # Training:
             losses = train_model(model, train_sampler, optimizer, loss_function, device)
             # Calculating and printing statistics:
@@ -81,40 +84,60 @@ def main(args):
 
             # Testing:
             losses = test_model(model, test_sampler, loss_function, device)
-            # Calculating and printing statistics:
+            # # Calculating and printing statistics:
             mean_loss = sum(losses) / len(losses)
             mean_losses_test.append(mean_loss)
             print(f"\nEpoch {e + 1} testing done, loss on test set: {mean_loss}\n")
-            
+            ### Plotting during training
             plotext.clf()
-            plotext.scatter(mean_losses_train, label='train')
-            plotext.scatter(mean_losses_test, label='test')
-            plotext.title('Train and test loss')
-            
-            plotext.xticks([i for i in range(len(mean_losses_train)+1)])
-            
+            plotext.scatter(mean_losses_train, label="train")
+            plotext.scatter(mean_losses_test, label="test")
+            plotext.title("Train and test loss")
+
+            plotext.xticks([i for i in range(len(mean_losses_train) + 1)])
+
             plotext.show()
 
     # Saving the model
-    if os.path.exists(os.path.join(os.getcwd() + "model_weights/")):
+    if os.path.exists(os.path.join(os.getcwd() + "/model_weights/")):
 
         torch.save(model.state_dict(), "model_weights/weights_model.txt")
     else:
-        os.mkdir(os.path.join(os.getcwd() + "model_weights/"))
+        os.mkdir(os.path.join(os.getcwd() + "/model_weights/"))
         torch.save(model.state_dict(), "model_weights/weights_model.txt")
+    
+    # Save plot of losses
+    figure(figsize=(9, 10), dpi=80)
+    fig, (ax1, ax2) = plt.subplots(2, sharex=True)
+    
+    ax1.plot(range(1, 1 + n_epochs), [x.detach().cpu() for x in mean_losses_train], label="Train", color="blue")
+    ax2.plot(range(1, 1 + n_epochs), [x.detach().cpu() for x in mean_losses_test], label="Test", color="red")
+    fig.legend()
+    now = datetime.now()
+    
+    if os.path.exists(os.path.join(os.getcwd() + "/artifacts/")):
+        fig.savefig(f"artifacts/session-{now.month}.{now.day}-{now.hour}:{now.minute}.png")
+    else:
+        os.mkdir(os.path.join(os.getcwd() + "/artifacts/"))
+        fig.savefig(f"artifacts/session-{now.month}.{now.day}-{now.hour}:{now.minute}.png")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--nb_epochs', help='number of training iterations', default=10, type=int)
-    parser.add_argument('--batch_size', help='batch_size', default=25, type=int)
-    parser.add_argument('--balanced_batches', help='whether to balance batches for class labels', default=True, type=bool)
+    parser.add_argument(
+        "--nb_epochs", help="number of training iterations", default=10, type=int
+    )
+    parser.add_argument("--batch_size", help="batch_size", default=25, type=int)
+    parser.add_argument(
+        "--balanced_batches",
+        help="whether to balance batches for class labels",
+        default=True,
+        type=bool,
+    )
 
     args = parser.parse_args()
-    
-    # set hotkey    
-    keyboard.add_hotkey('q', lambda: quit())
+    # set hotkey
     global activeloop
     activeloop = True
 
