@@ -11,7 +11,14 @@ from torchsummary import summary
 import matplotlib.pyplot as plt
 import os
 import argparse
+import keyboard
+import plotext
 
+# prepare to exit the program
+def quit():
+    global activeloop
+    activeloop=False
+    print("\nstopping loop!")
 
 def main(args):
 
@@ -60,27 +67,33 @@ def main(args):
     mean_losses_train = []
     mean_losses_test = []
     accuracies = []
-
+    
+    print("Starting Training, press q to terminate early!\n")
     for e in range(n_epochs):
-        # Training:
-        losses = train_model(model, train_sampler, optimizer, loss_function, device)
-        # Calculating and printing statistics:
-        mean_loss = sum(losses) / len(losses)
-        mean_losses_train.append(mean_loss)
-        print(f"\nEpoch {e + 1} training done, loss on train set: {mean_loss}\n")
+        if activeloop:
+            
+            # Training:
+            losses = train_model(model, train_sampler, optimizer, loss_function, device)
+            # Calculating and printing statistics:
+            mean_loss = sum(losses) / len(losses)
+            mean_losses_train.append(mean_loss)
+            print(f"\nEpoch {e + 1} training done, loss on train set: {mean_loss}\n")
 
-        # Testing:
-        losses = test_model(model, test_sampler, loss_function, device)
-        # Calculating and printing statistics:
-        mean_loss = sum(losses) / len(losses)
-        mean_losses_test.append(mean_loss)
-        print(f"\nEpoch {e + 1} testing done, loss on test set: {mean_loss}\n")
-        # Plotting the historic loss: #TODO: Add plotting functionality
-        # fig, ax = plt.subplots()
-        # ax.plot(mean_losses_train, label="Train loss")
-        # ax.plot(mean_losses_test, label="Test loss")
-        # ax.legend()
-        # plt.show()
+            # Testing:
+            losses = test_model(model, test_sampler, loss_function, device)
+            # Calculating and printing statistics:
+            mean_loss = sum(losses) / len(losses)
+            mean_losses_test.append(mean_loss)
+            print(f"\nEpoch {e + 1} testing done, loss on test set: {mean_loss}\n")
+            
+            plotext.clf()
+            plotext.scatter(mean_losses_train, label='train')
+            plotext.scatter(mean_losses_test, label='test')
+            plotext.title('Train and test loss')
+            
+            plotext.xticks([i for i in range(len(mean_losses_train)+1)])
+            
+            plotext.show()
 
     # Saving the model
     if os.path.exists(os.path.join(os.getcwd() + "model_weights/")):
@@ -99,5 +112,10 @@ if __name__ == "__main__":
     parser.add_argument('--balanced_batches', help='whether to balance batches for class labels', default=True, type=bool)
 
     args = parser.parse_args()
+    
+    # set hotkey    
+    keyboard.add_hotkey('q', lambda: quit())
+    global activeloop
+    activeloop = True
 
     main(args)
