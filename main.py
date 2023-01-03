@@ -72,7 +72,7 @@ def main(args:argparse.Namespace) -> None:
     mean_losses_train = []
     mean_losses_test = []
     accuracies = []
-    breakpoint()
+    
     for e in range(n_epochs):
         if activeloop:
 

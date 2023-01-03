@@ -4,12 +4,13 @@ Please read this document carefully as it has been filled out with important inf
 
 ## Code structure
 The template code is structured into multiple files, based on their functionality. 
-There are six `.py` files in total, each containing a different part of the code. 
+There are five `.py` files in total, each containing a different part of the code. 
+Feel free to create new files to explore the data or experiment with other ideas.
 
 - To download the data: run the `ImageDataset.py` file. The script will create a directory `/data/` and download the training and test data with corresponding labels to this directory. 
     - You will only have to run this script once usually, at the beginning of your project.
 
-- To run the whole training/evaluation pipeline: run `main.py`. This script is prepared to:
+- To run the whole training/evaluation pipeline: run `main.py`. This script is prepared to do the followings:
     - Load your train and test data (Make sure its downloaded beforehand!)
     - Initializes the neural network as defined in the `Net.py` file.
     - Initialize loss functions and optimizers. If you want to change the loss function/optimizer, do it here.
@@ -22,7 +23,6 @@ There are six `.py` files in total, each containing a different part of the code
 In your project, you are free to modify any parts of this code based on your needs. 
 Note that the Neural Network structure is defined in the `Net.py` file, so if you want to modify the network itself, you can do so in that script.
 The loss functions and optimizers are all defined in `main.py`.
-Also feel free to create new files to explore the data or experiment with other ideas.
 
 ## GitHub setup instructions
 1. Click the green *<> Code* button at the upper right corner of the repositiory.
