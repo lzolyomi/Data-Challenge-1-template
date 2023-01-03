@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 class Net(nn.Module):
-    def __init__(self, n_classes):
+    def __init__(self, n_classes:int) -> None:
         super(Net, self).__init__()
 
         self.cnn_layers = nn.Sequential(
@@ -32,7 +32,7 @@ class Net(nn.Module):
         )
 
     # Defining the forward pass
-    def forward(self, x):
+    def forward(self, x:torch.tensor) -> torch.tensor:
         x = self.cnn_layers(x)
         # After our convolutional layers which are 2D, we need to flatten our
         # input to be 1 dimensional, as the linear layers require this.

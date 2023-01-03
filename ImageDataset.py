@@ -14,21 +14,23 @@ class ImageDataset:
     to pass the data through the neural network and apply weights).
     """
 
-    def __init__(self, x, y, transform=None, target_transform=None):
+    def __init__(self, x:str, y:str, transform=None, target_transform=None) -> None:
+        # Target labels
         self.targets = self.load_numpy_arr_from_npy(y)
+        # Images
         self.imgs = self.load_numpy_arr_from_npy(x)
         self.transform = transform
         self.target_transform = target_transform
 
-    def __len__(self):
+    def __len__(self) -> int :
         return len(self.targets)
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx:int) -> tuple:
         image = torch.from_numpy(self.imgs[idx] / 255).float()
         label = self.targets[idx]
         return image, label
 
-    def load_numpy_arr_from_npy(self, path):
+    def load_numpy_arr_from_npy(self, path:str) -> np.ndarray:
         """
         Loads a numpy array from local storage.
 
@@ -42,7 +44,7 @@ class ImageDataset:
         return np.load(path)
 
 
-def load_numpy_arr_from_url(url):
+def load_numpy_arr_from_url(url:str) -> np.ndarray:
     """
     Loads a numpy array from surfdrive.
 

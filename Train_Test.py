@@ -1,7 +1,10 @@
 from tqdm import tqdm
 import torch
+from Net import Net
+from BatchSampler import BatchSampler
 
-def train_model(model, train_sampler, optimizer, loss_function, device):
+
+def train_model(model:Net, train_sampler:BatchSampler, optimizer:torch.optim, loss_function:torch.nn, device:str)->list:
   # Lets keep track of all the losses:
   losses = []
   # Put the model in train mode:
@@ -26,7 +29,7 @@ def train_model(model, train_sampler, optimizer, loss_function, device):
     optimizer.step()
   return losses
 
-def test_model(model, test_sampler, loss_function, device):
+def test_model(model:Net, test_sampler:BatchSampler, loss_function:torch.nn, device:str)->list:
   # Setting the model to evaluation mode:
   model.eval()
   losses = []

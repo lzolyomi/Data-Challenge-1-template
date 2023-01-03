@@ -1,7 +1,7 @@
 import numpy as np
 import random
 import torch
-
+import ImageDataset
 
 class BatchSampler:
     """
@@ -15,7 +15,7 @@ class BatchSampler:
     over-represented classes!
     """
 
-    def __init__(self, batch_size, dataset, balanced=False):
+    def __init__(self, batch_size:int, dataset:ImageDataset, balanced:bool=False) -> None:
         self.batch_size = batch_size
         self.dataset = dataset
         self.balanced = balanced
@@ -38,13 +38,13 @@ class BatchSampler:
             # Setting the indexes we will sample from later (all indexes):
             self.indexes = [i for i in range(len(dataset))]
 
-    def __len__(self):
+    def __len__(self) -> int:
         return (len(self.indexes) // self.batch_size) + 1
 
-    def shuffle(self):
+    def shuffle(self) -> None:
         random.shuffle(self.indexes)
 
-    def __iter__(self):
+    def __iter__(self) -> tuple:
         remaining = False
         self.shuffle()
         # Go over the datset in steps of 'self.batch_size':
