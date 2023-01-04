@@ -1,7 +1,9 @@
 import numpy as np
 import random
 import torch
-import ImageDataset
+from dc1.image_dataset import ImageDataset
+from typing import Generator, Tuple
+
 
 class BatchSampler:
     """
@@ -15,7 +17,7 @@ class BatchSampler:
     over-represented classes!
     """
 
-    def __init__(self, batch_size:int, dataset:ImageDataset, balanced:bool=False) -> None:
+    def __init__(self, batch_size: int, dataset: ImageDataset, balanced: bool = False) -> None:
         self.batch_size = batch_size
         self.dataset = dataset
         self.balanced = balanced
@@ -44,12 +46,11 @@ class BatchSampler:
     def shuffle(self) -> None:
         random.shuffle(self.indexes)
 
-    def __iter__(self) -> tuple:
+    def __iter__(self) -> Generator[Tuple[torch.Tensor, torch.Tensor], None, None]:
         remaining = False
         self.shuffle()
         # Go over the datset in steps of 'self.batch_size':
         for i in range(0, len(self.indexes), self.batch_size):
-            imgs, labels = [], []
             # If our current batch is larger than the remaining data, we quit:
             if i + self.batch_size > len(self.indexes):
                 remaining = True
