@@ -74,32 +74,31 @@ def main(args:argparse.Namespace) -> None:
     accuracies = []
     
     for e in range(n_epochs):
-        if activeloop:
+    
+        # Training:
+        losses = train_model(model, train_sampler, optimizer, loss_function, device)
+        # Calculating and printing statistics:
+        mean_loss = sum(losses) / len(losses)
+        mean_losses_train.append(mean_loss)
+        print(f"\nEpoch {e + 1} training done, loss on train set: {mean_loss}\n")
 
-            # Training:
-            losses = train_model(model, train_sampler, optimizer, loss_function, device)
-            # Calculating and printing statistics:
-            mean_loss = sum(losses) / len(losses)
-            mean_losses_train.append(mean_loss)
-            print(f"\nEpoch {e + 1} training done, loss on train set: {mean_loss}\n")
+        # Testing:
+        losses = test_model(model, test_sampler, loss_function, device)
 
-            # Testing:
-            losses = test_model(model, test_sampler, loss_function, device)
+        # # Calculating and printing statistics:
+        mean_loss = sum(losses) / len(losses)
+        mean_losses_test.append(mean_loss)
+        print(f"\nEpoch {e + 1} testing done, loss on test set: {mean_loss}\n")
 
-            # # Calculating and printing statistics:
-            mean_loss = sum(losses) / len(losses)
-            mean_losses_test.append(mean_loss)
-            print(f"\nEpoch {e + 1} testing done, loss on test set: {mean_loss}\n")
+        ### Plotting during training
+        plotext.clf()
+        plotext.scatter(mean_losses_train, label="train")
+        plotext.scatter(mean_losses_test, label="test")
+        plotext.title("Train and test loss")
 
-            ### Plotting during training
-            plotext.clf()
-            plotext.scatter(mean_losses_train, label="train")
-            plotext.scatter(mean_losses_test, label="test")
-            plotext.title("Train and test loss")
+        plotext.xticks([i for i in range(len(mean_losses_train) + 1)])
 
-            plotext.xticks([i for i in range(len(mean_losses_train) + 1)])
-
-            plotext.show()
+        plotext.show()
 
     # retrieve current time to label artifacts
     now = datetime.now()
@@ -124,6 +123,20 @@ def main(args:argparse.Namespace) -> None:
 
     # save plot of losses
     fig.savefig(f"artifacts/session_{now.month:02}_{now.day:02}_{now.hour}_{now.minute:02}.png")
+    
+    
+    
+    # Check if /summaries/ subdir exists
+    if not os.path.exists(os.path.join(os.getcwd() + "/summaries/")):
+        os.mkdir(os.path.join(os.getcwd() + "/summaries/"))
+    
+    #Saving model summary and parser arguments
+    summary_str = str(summary(model, (1, 128, 128), device=device, verbose=0))
+    with open(f"summaries/summary_{now.month:02}_{now.day:02}_{now.hour}_{now.minute:02}.txt", "w", encoding="utf-8") as text_file:
+        text_file.write(summary_str)
+        text_file.write('\n\n')
+        text_file.write(str(args))
+    
 
 
 if __name__ == "__main__":
@@ -137,12 +150,10 @@ if __name__ == "__main__":
         "--balanced_batches",
         help="whether to balance batches for class labels",
         default=True,
-        type=bool,
+        action=argparse.BooleanOptionalAction,
+        type=bool
     )
 
     args = parser.parse_args()
-    # set hotkey
-    global activeloop
-    activeloop = True
 
     main(args)
