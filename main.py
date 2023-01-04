@@ -108,7 +108,7 @@ def main(args:argparse.Namespace) -> None:
         os.mkdir(os.path.join(os.getcwd() + "/model_weights/"))
     
     # Saving the model
-    torch.save(model.state_dict(), f"model_weights/model-{now.month:02}.{now.day:02}-{now.hour}:{now.minute:02}.txt")
+    torch.save(model.state_dict(), f"model_weights/model_{now.month:02}_{now.day:02}_{now.hour}_{now.minute:02}.txt")
     
     # Create plot of losses
     figure(figsize=(9, 10), dpi=80)
@@ -123,7 +123,7 @@ def main(args:argparse.Namespace) -> None:
         os.mkdir(os.path.join(os.getcwd() + "/artifacts/"))
 
     # save plot of losses
-    fig.savefig(f"artifacts/session-{now.month:02}.{now.day:02}-{now.hour}:{now.minute:02}.png")
+    fig.savefig(f"artifacts/session_{now.month:02}_{now.day:02}_{now.hour}_{now.minute:02}.png")
 
 
 if __name__ == "__main__":
