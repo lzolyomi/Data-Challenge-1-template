@@ -3,5 +3,6 @@ data/
 model_weights/
 *.ipynb
 artifacts/
+summaries/
 .DS_store
 __pycache__/
