@@ -39,9 +39,7 @@ The loss functions and optimizers are all defined in `main.py`.
 
 
 ## Environment setup instructions
-We recommend to set up a virtual Python environment to install all necessary packages. 
-These packages are included in the `requirements.txt` file.
-If you are using PyCharm, it should offer you the option to create this virtual environment from the requirements file.
+We recommend to set up a virtual Python environment to install the package and its dependencies. To install the package, we recommend to execute `pip install -e .` in the command line. This will install it in editable mode, meaning there is no need to reinstall after making changes. If you are using PyCharm, it should offer you the option to create a virtual environment from the requirements file on startup. Note that also in this case, it will still be necessary to run the pip command described above.
 
 ## Submission instructions
 After each sprint, you are expected to submit your code. This will **not** be done in Canvas, instead you will be creating a release of your current repository. 
