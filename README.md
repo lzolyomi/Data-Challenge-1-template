@@ -17,7 +17,7 @@ Feel free to create new files to explore the data or experiment with other ideas
     - Define number of training epochs and batch size
     - Check and enable GPU acceleration for training (if you have CUDA or Apple Silicon enabled device)
     - Train the neural network and perform evaluation on test set at the end of each epoch.
-    - Provide plots about the training losses both during training in the command line and as a png (saved in the `/artifcats/` subdirectory)
+    - Provide plots about the training losses both during training in the command line and as a png (saved in the `/artifacts/` subdirectory)
     - Finally, save your trained model's weights in the `/model_weights/` subdirectory so that you can reload them later.
 
 In your project, you are free to modify any parts of this code based on your needs. 
