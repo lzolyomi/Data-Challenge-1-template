@@ -61,3 +61,6 @@ For more information on releases, see the [GitHub releases](https://docs.github.
 9. **Verify** that your release has been succesfully created by heading over to your repository and press the *Releases* button once again. There you should be able to see your newly created release.
 
 *After the first release, you should click *Draft a new release* instead of *Create a new release*
+
+## Mypy
+The template is created with support for full typehints. This enables the use of a powerful tool called `mypy`. Code with typehinting can be statically checked using this tool. It is recommended to use this tool as it can increase confidence in the correctness of the code before testing it. Note that usage of this tool and typehints in general is entirely up to the students and not enforced in any way. To execute the tool, simply run `mypy .`. For more information see https://mypy.readthedocs.io/en/latest/faq.html
