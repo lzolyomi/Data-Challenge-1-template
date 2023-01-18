@@ -62,3 +62,15 @@ For more information on releases, see the [GitHub releases](https://docs.github.
 
 ## Mypy
 The template is created with support for full typehints. This enables the use of a powerful tool called `mypy`. Code with typehinting can be statically checked using this tool. It is recommended to use this tool as it can increase confidence in the correctness of the code before testing it. Note that usage of this tool and typehints in general is entirely up to the students and not enforced in any way. To execute the tool, simply run `mypy .`. For more information see https://mypy.readthedocs.io/en/latest/faq.html
+
+## Argparse
+Argparse functionality is included in the main.py file. This means the file can be run from the command line while passing arguments to the main function. Right now, there are arguments included for the number of epochs (nb_epochs), batch size (batch_size), and whether to create balanced batches (balanced_batches). You are free to add or remove arguments as you see fit.
+
+To make use of this functionality, first open the command prompt and change to the directory containing the main.py file.
+For example, if you're main file is in C:\Data-Challenge-1-template-main\dc1\, 
+type `cd C:\Data-Challenge-1-template-main\dc1\` into the command prompt and press enter.
+
+Then, main.py can be run by, for example, typing `python main.py --nb_epochs 10 --batch_size 25`.
+This would run the script with 10 epochs, a batch size of 25, and balanced batches, which is also the current default.
+If you would want to run the script with 20 epochs, a batch size of 5, and batches that are not balanced, 
+you would type `main.py --nb_epochs 20 --batch_size 5 --no-balanced_batches`.
