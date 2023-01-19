@@ -1,4 +1,5 @@
 local/
+Data_Challenge_1_template.egg-info/
 data/
 model_weights/
 *.ipynb
